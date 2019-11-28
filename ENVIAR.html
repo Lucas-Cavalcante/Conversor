@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Site de Conversão</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+  <style>
+    .fakeimg {
+           height: 200px;
+           
+                background: #aaa;
+                }
+        img {
+                height: 300px;
+                width: 50px;
+        }
+                </style>
+</head>
+
+<body >
+  <div class="jumbotron text-center" style="margin-bottom:0; ">
+    <h1>Conversor Fácil</h1>
+    <p>Seu site de conversão gratuito!</p>
+  </div>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">CONVERSÃO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Moeda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Comprimento</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Temperatura</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Velocidade</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="card-deck">
+    <div class="card">
+      <img src="https://st2.depositphotos.com/7752738/11009/v/950/depositphotos_110096724-stock-illustration-money-arrows-vector-icon-concept.jpg"
+        class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title">MOEDA</h5>
+
+        
+          <b>De:    </b><select id="moedaDe">
+            <option value="Real">Real</option>
+            <option value="Dolar">Dolar</option>
+            <option value="Euro">Euro</option>
+          </select><br><br>
+
+          <b>Para: </b><select id="moedaPara">
+            <option value="Real">Real</option>
+            <option value="Dolar">Dolar</option>
+            <option value="Euro">Euro</option>
+          </select><br><br>
+          Valor: <input type="text" name="real" id="moeda"><br><br>
+          <button onclick="conversorMoeda()" type="button" class="btn btn-outline-warning">Converter</button>
+          <br><br>
+          <b>RESULTADO: <span id="resultadoMoeda"></span></b>
+          <br>
+
+        
+
+        
+      </div>
+    </div>
+    <div class="card">
+      <img src="http://cdn5.colorir.com/desenhos/color/201723/esquadro-e-regua-colegio-1372261.jpg" class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title">COMPRIMENTO</h5>
+        
+          <b>De: </b><select id="deComprimento">
+            <option value="Milimetro">Milímetro</option>
+            <option value="Centimetro">Centímetro</option>
+            <option value="Metro">Metro</option>
+          </select><br><br>
+
+          <b>Para:</b><select id="paraComprimento">
+            <option value="Milimetro">Milímetro</option>
+            <option value="Centimetro">Centímetro</option>
+            <option value="Metro">Metro</option>
+          </select><br><br>
+          Valor: <input type="text" name="real" id="comprimento"><br><br>
+          <button onclick="conversorComprimento()" type="button" class="btn btn-outline-primary">Converter</button>
+          <br><br>
+          <b>RESULTADO: <span id="resultadoComprimento"></span></b>
+          <br><br>
+        
+      </div>
+    </div>
+    <div class="card">
+      <img src="data:image/jpeg;base64,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"
+        class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title">TEMPERATURA</h5>
+        
+          <b>De: </b><select id="deTemperatura">
+            <option value="Celcius">Celcius</option>
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+          </select><br><br>
+
+          <b>Para:</b><select id="paraTemperatura">
+            <option value="Celcius">Celcius</option>
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+          </select><br><br>
+          Valor: <input type="text" name="real" id="temperatura"><br><br>
+          <button onclick="conversorTemperatura()" type="button" class="btn btn-outline-danger">Converter</button>
+          <br><br>
+          <b>RESULTADO: <span id="resultadoTemperatura"></span></b> </b>
+          <br><br>
+        
+      </div>
+    </div>
+
+
+    
+  </div>
+
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <p>TRABALHO TECNICAS DE PROGRAMAÇÃO</p>
+    <p><b>Professor:</b> Fernando Antônio Marques Filho
+      <p><b>Grupo:</b> Lucas Cavalcante, Bruna Feres, Fernando Rangel, Francielen Pereira</p>
+    </p>
+
+    <script>
+      function conversorMoeda() {
+        var inputMoeda = document.getElementById("moeda").value;
+        var de = document.getElementById("moedaDe").value;
+        var para = document.getElementById("moedaPara").value;
+        var resultado;
+        
+        if( de == para){
+          resultado = inputMoeda /1.0;
+        }
+        else if( de == "Real"){
+          if(para == "Dolar"){
+            resultado = inputMoeda / 4.23;
+          }
+          if(para == "Euro"){
+            resultado = inputMoeda / 4.67;
+          }
+        }
+       
+        else if( de == "Dolar"){
+          if(para == "Real"){
+            resultado = inputMoeda * 4.23;
+          }
+          if(para == "Euro"){
+            resultado = inputMoeda * 0.91;
+          }
+        }
+        else if( de == "Euro"){
+          if(para == "Real"){
+            resultado = inputMoeda * 4.67;
+          }
+          if(para == "Dolar"){
+            resultado = inputMoeda / 0.91;
+          }
+        }
+      
+
+        document.getElementById("resultadoMoeda").innerHTML = resultado.toFixed(2);
+
+      }
+    </script>
+    <script>
+      function conversorComprimento() {
+        var inputComprimento = document.getElementById("comprimento").value;
+        var de = document.getElementById("deComprimento").value;
+        var para = document.getElementById("paraComprimento").value;
+        var resultado;
+        
+        if( de == para){
+          resultado = inputComprimento /1.0;
+        }
+        else if( de == "Metro"){
+          if(para == "Centimetro"){
+            resultado = inputComprimento *100;
+          }
+          if(para == "Milimetro"){
+            resultado = inputComprimento * 1000;
+          }
+        }
+       
+        else if( de == "Centimetro"){
+          if(para == "Metro"){
+            resultado = inputComprimento / 100.0;
+          }
+          if(para == "Milimetro"){
+            resultado = inputComprimento * 10;
+          }
+        }
+        else if( de == "Milimetro"){
+          if(para == "Metro"){
+            resultado = inputComprimento / 1000.0;
+          }
+          if(para == "Centimetro"){
+            resultado = inputComprimento * 10;
+          }
+        }
+      
+
+        document.getElementById("resultadoComprimento").innerHTML = resultado.toFixed(2);
+
+      }
+    </script>
+    <script> 
+      function conversorTemperatura() {
+        var inputTemperatura = document.getElementById("temperatura").value;
+        var de = document.getElementById("deTemperatura").value;
+        var para = document.getElementById("paraTemperatura").value;
+        var resultado;
+        
+        if( de == para){
+          resultado = inputTemperatura / 1.0;
+        }
+        else if( de == "Celcius"){
+          if(para == "Fahrenheit"){
+            resultado = ((inputTemperatura / 5.0 ) * 9) + 32;
+          }
+          if(para == "Kelvin"){
+            resultado = inputTemperatura/1.0 + 273.15;
+          }
+        }
+       
+        else if( de == "Fahrenheit"){
+          if(para == "Celcius"){
+            resultado = ((inputTemperatura - 32 )/ 9.0) * 5;
+          }
+          if(para == "Kelvin"){
+            resultado = (((inputTemperatura - 32 )/ 9.0) * 5) + 273.15;
+          }
+        }
+        else if( de == "Kelvin"){
+          if(para == "Celcius"){
+            resultado = inputTemperatura/1.0 - 273.15;
+          }
+          if(para == "Fahrenheit"){
+            resultado = (((inputTemperatura - 273.15) * 9 ) / 5.0) + 32;
+          }
+        }
+      
+
+        document.getElementById("resultadoTemperatura").innerHTML = resultado.toFixed(2);
+
+      }
+    </script>
+  </div>
+</body>
+
+</html>
