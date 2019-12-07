@@ -35,8 +35,7 @@
       
         document.getElementById("resultadoMoeda").innerHTML = resultado.toFixed(2);
       }
-    </script>
-    <script>
+  
       function conversorComprimento() {
         var inputComprimento = document.getElementById("comprimento").value;
         var de = document.getElementById("deComprimento").value;
@@ -74,8 +73,7 @@
       
         document.getElementById("resultadoComprimento").innerHTML = resultado.toFixed(2);
       }
-    </script>
-    <script> 
+     
       function conversorTemperatura() {
         var inputTemperatura = document.getElementById("temperatura").value;
         var de = document.getElementById("deTemperatura").value;
